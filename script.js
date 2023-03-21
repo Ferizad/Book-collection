@@ -34,7 +34,7 @@ form.onsubmit = (e) => {
   const title = document.getElementById('title').value;
   const author = document.getElementById('author').value;
   const newBook = {
-    id: books.length + 1,
+    id: Date.now(),
     title: title || 'No title',
     author: author || 'No author',
   };
