@@ -143,6 +143,15 @@ GitHub pages
 - Twitter: [@FerizadK](https://twitter.com/FerizadK)
 - LinkedIn: [Ferizad Kanafina](https://www.linkedin.com/in/ferizad-kanafina-b41061253/)
 
+## 👥 Authors <a name="authors"></a>
+
+👤 **Rikol137**
+
+- GitHub: [@Rikol137](https://github.com/Rikol137)
+- Twitter: [@RikolK](https://twitter.com/RikolK)
+- LinkedIn: [Kelvin Kimwetich](https://www.linkedin.com/in/kelvin-kimwetich-b5398521a/)
+
+
 
 <!-- FUTURE FEATURES -->
 
