@@ -19,15 +19,15 @@ class Books {
 
   addBook(book) {
     this.books.push(book);
-    this.svBooks();
-    this.renBooks();
+    this.SaveBks();
+    this.renderBks();
   }
 
-  remBook(id) {
+  removeBk(id) {
     this.books = this.books.filter((book) => book.id !== id);
   }
 
-  svBooks() {
+  SaveBks() {
     localStorage.setItem('books', JSON.stringify(this.books));
   }
 
@@ -39,7 +39,7 @@ class Books {
     return [];
   }
 
-  renBooks() {
+  renderBks() {
     list.innerHTML = '';
     this.books.forEach((book) => {
       list.innerHTML += `
@@ -55,9 +55,9 @@ class Books {
 const books = new Books();
 
 const remove = (id) => {
-  books.remBook(id);
-  books.svBooks();
-  books.renBooks();
+  books.removeBk(id);
+  books.SaveBks();
+  books.renderBks();
 };
 
 form.onsubmit = (e) => {
@@ -67,12 +67,12 @@ form.onsubmit = (e) => {
 };
 
 books.getBooks();
-books.renBooks();
+books.renderBks();
 const removeBtns = document.querySelectorAll('.btn');
 removeBtns.forEach((btn) => {
   btn.addEventListener('click', () => {
     remove(btn.dataset.id);
-    books.svBooks();
-    books.renBooks();
+    books.SaveBks();
+    books.renderBks();
   });
 });
