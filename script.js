@@ -1,57 +1,78 @@
+/* eslint max-classes-per-file: ["error", 2] */
 const list = document.getElementById('list');
 const form = document.getElementById('book-form');
+const title = document.getElementById('title');
+const author = document.getElementById('author');
 
-let books = [];
-
-function Books() {
-  localStorage.setItem('books', JSON.stringify(books));
-}
-
-function getSetBooks() {
-  const storedBooks = localStorage.getItem('books');
-  if (storedBooks) {
-    books = JSON.parse(storedBooks);
+class Book {
+  constructor(title, author) {
+    this.title = title;
+    this.author = author;
+    this.id = Date.now();
   }
-  return [];
 }
 
-function renBooks() {
-  list.innerHTML = '';
-  books.forEach((book) => {
-    list.innerHTML += `
-        <li> 
-        <h3> ${book.title} </h3>
-        <h3> ${book.author} </h3>
-        <button onclick="remove(${book.id})">Remove</button>
-        <hr/>
-        </li>
-        `;
-  });
+class Books {
+  constructor() {
+    this.books = [];
+  }
+
+  addBook(book) {
+    this.books.push(book);
+    this.svBooks();
+    this.renBooks();
+  }
+
+  remBook(id) {
+    this.books = this.books.filter((book) => book.id !== id);
+  }
+
+  svBooks() {
+    localStorage.setItem('books', JSON.stringify(this.books));
+  }
+
+  getBooks() {
+    const storedBooks = localStorage.getItem('books');
+    if (storedBooks) {
+      this.books = JSON.parse(storedBooks);
+    }
+    return [];
+  }
+
+  renBooks() {
+    list.innerHTML = '';
+    this.books.forEach((book) => {
+      list.innerHTML += `
+          <li class="book-item">
+              <p> ${book.title} by ${book.author} </p>
+              <button class="btn" data-id="${book.id}" onclick="remove(${book.id})"> Remove </button>
+          </li>
+          `;
+    });
+  }
 }
+
+const books = new Books();
+
+const remove = (id) => {
+  books.remBook(id);
+  books.svBooks();
+  books.renBooks();
+};
 
 form.onsubmit = (e) => {
   e.preventDefault();
-  const title = document.getElementById('title').value;
-  const author = document.getElementById('author').value;
-  const newBook = {
-    id: Date.now(),
-    title: title || 'No title',
-    author: author || 'No author',
-  };
-  books.push(newBook);
-  Books();
-  renBooks();
+  books.addBook(new Book(title.value, author.value));
   form.reset();
 };
 
-//  eslint-disable-next-line no-unused-vars
-
-function remove(id) {
-  books = books.filter((book) => book.id !== id);
-  Books();
-  renBooks();
-}
-
-getSetBooks();
-renBooks();
-remove();
+books.getBooks();
+books.renBooks();
+const removeBtns = document.querySelectorAll('.btn');
+removeBtns.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    remove(btn.dataset.id);
+    books.svBooks();
+    books.renBooks();
+  });
+});
