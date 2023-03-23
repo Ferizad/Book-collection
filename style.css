@@ -5,9 +5,37 @@
 }
 
 main {
-  width: 71%;
+  width: 60%;
   margin: 1rem auto;
   text-align: center;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin: 1rem;
+  border: 2px solid black;
+}
+
+.navigation ul {
+  display: flex;
+  list-style-type: none;
+}
+
+.navigation ul li {
+  border-right: solid 2px black;
+  padding: 0 0.5rem;
+}
+
+.navigation ul li a {
+  text-decoration: none;
+  color: black;
+}
+
+.navigation ul li a:hover {
+  color: #e4dcdc;
 }
 
 form {
@@ -25,26 +53,14 @@ form {
   width: 60%;
 }
 
-h1,
-h2 {
-  display: flex;
-  flex-direction: column;
-  margin: 1rem auto;
-  align-items: center;
-}
-
 .hr {
   border: 1px solid black;
-  max-width: 40%;
+  max-width: 30%;
   margin: 1rem auto;
-}
-
-#add-btn {
-  margin-left: 57%;
 }
 
 button {
-  padding: 0.3rem;
+  padding: 0.5rem;
   box-shadow: 3px 5px;
 }
 
@@ -52,18 +68,58 @@ button:hover {
   cursor: pointer;
 }
 
-.list ul li {
+.book-list ul li {
   display: flex;
   justify-content: space-between;
   padding: 0.5rem;
   align-items: center;
 }
 
-.list ul {
+.book-list ul {
   margin: 1rem auto;
   border: 2px solid black;
 }
 
-.list ul li:nth-child(odd) {
+.book-list ul li:nth-child(odd) {
   background-color: rgb(186, 185, 185);
+}
+
+.submit {
+  width: 60%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#contact {
+  width: 40%;
+  margin: 2rem auto 0;
+}
+
+#contact p {
+  font-size: large;
+  text-align: left;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.contact-list {
+  text-align: left;
+  padding-left: 4rem;
+  font-size: large;
+}
+
+.time {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 1rem;
+  font-weight: 700;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  margin: 1rem 1rem;
+  border: 2px solid black;
 }
