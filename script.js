@@ -1,8 +1,45 @@
 /* eslint max-classes-per-file: ["error", 2] */
-const list = document.getElementById('list');
-const form = document.getElementById('book-form');
+const booksList = document.getElementById('library');
+const form = document.getElementById('form');
 const title = document.getElementById('title');
 const author = document.getElementById('author');
+const time = document.getElementById('time');
+const list = document.getElementById('list');
+const formSection = document.getElementById('BookList');
+const contact = document.getElementById('contact');
+const listLink = document.getElementById('listLink');
+const formLink = document.getElementById('formLink');
+const contactLink = document.getElementById('contactLink');
+
+formSection.style.display = 'none';
+contact.style.display = 'none';
+
+function Form() {
+  formSection.style.display = 'block';
+  contact.style.display = 'none';
+  list.style.display = 'none';
+}
+
+function Contact() {
+  contact.style.display = 'block';
+  formSection.style.display = 'none';
+  list.style.display = 'none';
+}
+
+function List() {
+  list.style.display = 'block';
+  formSection.style.display = 'none';
+  contact.style.display = 'none';
+}
+
+formLink.addEventListener('click', Form);
+contactLink.addEventListener('click', Contact);
+listLink.addEventListener('click', List);
+
+setInterval(() => {
+  const date = new Date();
+  time.innerHTML = date.toLocaleTimeString();
+}, 1000);
 
 class Book {
   constructor(title, author) {
@@ -19,7 +56,7 @@ class Books {
 
   addBook(book) {
     this.books.push(book);
-    this.SaveBks();
+    this.saveBks();
     this.renderBks();
   }
 
@@ -27,7 +64,7 @@ class Books {
     this.books = this.books.filter((book) => book.id !== id);
   }
 
-  SaveBks() {
+  saveBks() {
     localStorage.setItem('books', JSON.stringify(this.books));
   }
 
@@ -40,12 +77,12 @@ class Books {
   }
 
   renderBks() {
-    list.innerHTML = '';
+    booksList.innerHTML = '';
     this.books.forEach((book) => {
-      list.innerHTML += `
+      booksList.innerHTML += `
           <li class="book-item">
               <p> ${book.title} by ${book.author} </p>
-              <button class="btn" data-id="${book.id}" onclick="remove(${book.id})"> Remove </button>
+              <button class="remove-btn" data-id="${book.id}" onclick="remove(${book.id})"> Remove </button>
           </li>
           `;
     });
@@ -56,23 +93,24 @@ const books = new Books();
 
 const remove = (id) => {
   books.removeBk(id);
-  books.SaveBks();
+  books.saveBks();
   books.renderBks();
 };
 
 form.onsubmit = (e) => {
   e.preventDefault();
   books.addBook(new Book(title.value, author.value));
+  List();
   form.reset();
 };
 
 books.getBooks();
 books.renderBks();
-const removeBtns = document.querySelectorAll('.btn');
+const removeBtns = document.querySelectorAll('.remove-btn');
 removeBtns.forEach((btn) => {
   btn.addEventListener('click', () => {
     remove(btn.dataset.id);
-    books.SaveBks();
+    books.saveBks();
     books.renderBks();
   });
 });
