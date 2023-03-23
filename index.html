@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book-collection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav class="navigation">
+            <h3> Awesome books</h3>
+
+            <ul>
+                <li>
+                    <a href="#list" id="listLink">List</a>
+                </li>
+                <li>
+                    <a href="#BookList" id="formLink">Add new</a>
+                </li>
+                <li>
+                    <a href="#contact" id="contactLink">Contact</a>
+                </li>
+            </ul>
+        </nav>    
+        <div class="time" id="time"> </div>
+    </header>
+
+    <main>
+        <section id="list">
+            <h1> Awesome books </h1>
+            <div class="book-list"> 
+                <ul id="library">
+                </ul>
+            </div>
+    
+            <hr class="hr">
+        </section>
+
+        <section id="BookList">
+            <h2> Add a new book </h2>
+    
+            <form class="form" id="form">
+                <input type="text" class="form-control" required placeholder="Title" id="title">
+                <input type="text" class="form-control" required placeholder="Author" id="author"> 
+                <div class="submit">
+                    <button type="submit" class="end">Add Book</button>
+                </div>
+            </form>
+        </section>
+
+    <section id="contact">
+        <h2 class="contact">Contact Information</h2>
+        <p>Do you have any questions or you just want to say "Hello"? <br>
+            You can reach out to us!</p>
+        <ul class="contact-list">
+            <li>Our e-mail: dossanovafm@gmail.com</li>
+            <li>Our phone number: +77026660190</li>
+            <li>Our address: Fifth Pool Villa, Challong, Phuket, Thailand</li>
+        </ul>
+    </section>
+</main>
+<footer>
+    <p>
+        Copyright &copy;All rights reserved
+    </p>
+</footer>
+    
+<script src="script.js"></script>   
+</body>
+</html>
